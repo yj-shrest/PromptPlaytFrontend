@@ -1,11 +1,6 @@
 import React from "react";
 import { useParams, Link } from "react-router";
 import { useState, useEffect } from "react";
-import { useLogin } from "./UserContext";
-import { useEnokiFlow } from "@mysten/enoki/react";
-import { bcs } from "@mysten/sui/bcs";
-import { Transaction } from "@mysten/sui/transactions";
-import { SuiClient } from "@mysten/sui/client";
 
 const GAME_BOOK_OBJECT_ID =
     "0x6beae9325f296d0978e0d26c2277f204923e8e83472e3f60b713b8e334e942e2";
@@ -16,6 +11,7 @@ const FULLNODE_URL = "https://fullnode.testnet.sui.io"; // or your custom fullno
 
 
 const Remix = () => {
+    return(<></>)
     const [gameHtml, setGameHtml] = useState(null);
     const [game, setGame] = useState(null);
     const [games, setGames] = useState(() => {

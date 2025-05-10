@@ -16,6 +16,7 @@ const CURRENT_USER = "Rishikesh0523";
 
 // --- Component ---
 const MintGame = () => {
+    
     const flow = useEnokiFlow();
     const { userDetails } = useLogin(); // Get user details from context
     const [txnDigest, setTxnDigest] = useState(); // Store the transaction digest

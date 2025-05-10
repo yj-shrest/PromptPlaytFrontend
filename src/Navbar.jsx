@@ -4,21 +4,9 @@ import { useWallet} from "@solana/wallet-adapter-react";
 import { PhantomWalletName } from '@solana/wallet-adapter-wallets';
 import { useAnchorWallet, useConnection } from '@solana/wallet-adapter-react'
 import { PublicKey, SystemProgram } from "@solana/web3.js";
-import React from 'react'
 import { getRandomName } from './getRandomName';
-const NETWORK = "testnet";
 const Navbar = () => {
-  //static data
-    // const { isLoggedIn, login, logout, userDetails } = 
-    const { isLoggedIn, login, logout, userDetails } = {
-        isLoggedIn: false,
-        login: () => {},
-        logout: () => {},
-        userDetails: {
-            address: "0x1234567890abcdef1234567890abcdef12345678"
-        }
-    };
-    const {connected,select} = useWallet();
+    const {connected,connect,select,disconnect} = useWallet();
     const [showWalletInfo, setShowWalletInfo] = useState(false);
     const [userBalance, setUserBalance] = useState(0);
     const [userName, setUserName] = useState(getRandomName());
@@ -44,25 +32,23 @@ const Navbar = () => {
         setShowWalletInfo(!showWalletInfo);
       };
     
-      const handleLogout = () => {
-        logout();
-        setShowWalletInfo(false);
-      };
-      const onConnect = () => {
-        select(PhantomWalletName)
-      }
-      // const getBalance = async (walletAddress) => {
-      //   const suiClient = new SuiClient({ url: FULLNODE_URL });
-      //   const balanceObj = await suiClient.getCoins({
-      //     owner: walletAddress,
-      //     limit: 100,
-      //   });
-    
-      //   const balance = balanceObj.data
-      //     .filter((coinObj) => coinObj.coinType === "0x2::sui::SUI")
-      //     .reduce((acc, obj) => acc + parseInt(obj.balance), 0);
-      //   setUserBalance(balance * 10 ** -9);
-      // };
+      const handleLogout = async () => {
+  try {
+    await disconnect();
+    setShowWalletInfo(false);
+  } catch (err) {
+    console.error("Logout failed:", err);
+  }
+};
+      const onConnect = async () => {
+  select(PhantomWalletName);
+  try {
+    await connect();
+  } catch (err) {
+    console.error('Connection error', err);
+  }
+};
+
       
 
   return (

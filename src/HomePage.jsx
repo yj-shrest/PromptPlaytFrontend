@@ -1,9 +1,9 @@
 import { useState, useEffect, use } from 'react';
 import { Search, Plus, ChevronRight, User, LogOut } from 'lucide-react';
-import { useLogin } from './UserContext';
-import { getFullnodeUrl, SuiClient } from "@mysten/sui/client";
-const NETWORK = "testnet";
-const FULLNODE_URL = getFullnodeUrl(NETWORK);
+// import { useLogin } from './UserContext';
+// import { getFullnodeUrl, SuiClient } from "@mysten/sui/client";
+// const NETWORK = "testnet";
+// const FULLNODE_URL = getFullnodeUrl(NETWORK);
 const objectId =
   "0x6beae9325f296d0978e0d26c2277f204923e8e83472e3f60b713b8e334e942e2";
 export default function HomePage() {
